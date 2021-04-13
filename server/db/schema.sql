@@ -1,6 +1,1 @@
-CREATE TABLE songs (
-  id SERIAL PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
-  movie VARCHAR(255) NOT NULL,
-  length FLOAT NOT NULL
-);
+-- Create your schema here
