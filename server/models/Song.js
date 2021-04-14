@@ -29,8 +29,8 @@ class Song {
     } catch (error) {
       console.error("MODEL ERROR")
       console.error(error)
-      return error
-      // throw(error)
+      // return error
+      throw(error)
     }
   }
 
@@ -52,6 +52,21 @@ class Song {
       } else {
         return null
       }
+    } catch (error) {
+      console.error(error)
+      throw(error)
+    }
+  }
+
+  async save() {
+    try {
+      const queryString = "INSERT INTO songs (title, movie, length) VALUES ($1, $2, $3) RETURNING id;"
+      const result = await pool.query(queryString, [this.title, this.movie, this.length])
+      // debugger
+      const newSongId = result.rows[0].id
+      this.id = newSongId
+
+      return true
     } catch (error) {
       console.error(error)
       throw(error)

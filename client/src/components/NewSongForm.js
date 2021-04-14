@@ -6,6 +6,7 @@ import ErrorList from "./ErrorList"
 
 const NewSongForm = (props) => {
   const [shouldRedirect, setShouldRedirect] = useState(false)
+  // const [persistedSongId, setPersistedSongId] = useState(null)
   const [errors, setErrors] = useState({})
   const [newSong, setNewSong] = useState({
     title: "",
@@ -55,6 +56,8 @@ const NewSongForm = (props) => {
           throw error
         }
         console.log("New Song was added successfully!")
+        // const responseBody = await response.json()
+        // setPersistedSongId(responseBody.song.id)
         setShouldRedirect(true)
       } catch (err) {
         console.error(`Error in fetch: ${err.message}`)
@@ -64,6 +67,7 @@ const NewSongForm = (props) => {
 
   if (shouldRedirect) {
     return <Redirect to="/" />
+    // return <Redirect to={`/songs/${persistedSongId}`} />
   }
 
   return (
