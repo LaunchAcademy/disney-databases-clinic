@@ -18,7 +18,7 @@ songsRouter.get("/", async (req, res) => {
   } catch (err) {
     // if anything goes wrong,
     // catch it and console.log(errors), and respond with the error
-    console.log(err)
+    console.error(err)
     res.status(500).json({ error: err })
   }
 })
