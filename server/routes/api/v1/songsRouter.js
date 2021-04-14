@@ -13,9 +13,9 @@ songsRouter.get("/", async (req, res) => {
     // console.log(songs)
   
     // send that data as a JSON response
-    res.json({ songs: songs })
+    res.status(200).json({ songs: songs })
     
-  } catch(err) {
+  } catch (err) {
     // if anything goes wrong,
     // catch it and console.log(errors), and respond with the error
     console.log(err)
@@ -32,8 +32,8 @@ songsRouter.get("/:id", async (req,res) => {
     const singleSong = await Song.findById(id)
 
     // send that data for the single song as a JSON response
-    res.json({ song: singleSong })
-  } catch(err) {
+    res.status(200).json({ song: singleSong })
+  } catch (err) {
     console.error(err)
     res.status(500).json({ error: err })
   }

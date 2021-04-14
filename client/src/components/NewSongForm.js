@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import { Redirect } from "react-router-dom"
+import { Link, Redirect } from "react-router-dom"
 
-const NewSongForm = props => {
+const NewSongForm = (props) => {
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [newSong, setNewSong] = useState({
     title: "",
@@ -9,14 +9,14 @@ const NewSongForm = props => {
     length: ""
   })
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     setNewSong({
       ...newSong,
       [event.currentTarget.name]: event.currentTarget.value
     })
   }
 
-  const postNewSong = async event => {
+  const postNewSong = async (event) => {
     event.preventDefault()
 
     try {
@@ -46,24 +46,36 @@ const NewSongForm = props => {
 
   return (
     <>
+      <h4><Link to="/">Back to Home</Link></h4>
+
       <h1>New Favorite Song</h1>
       <form onSubmit={postNewSong}>
-        <label>
+        <label htmlFor="songTitle">
           Title
-          <input type="text" name="title" onChange={handleInputChange} value={newSong.title} />
+          <input
+            id="songTitle"
+            type="text"
+            name="title"
+            onChange={handleInputChange}
+            value={newSong.title}
+          />
         </label>
-        <label>
+
+        <label htmlFor="songMovie">
           Movie
           <input
+            id="songMovie"
             type="text"
             name="movie"
             onChange={handleInputChange}
             value={newSong.movie}
           />
         </label>
-        <label>
+        
+        <label htmlFor="songLength">
           Length
           <input
+            id="songLength"
             type="text"
             name="length"
             onChange={handleInputChange}

@@ -25,18 +25,24 @@ const SongsList = () => {
     getSongs()
   }, [])
 
-  const songTiles = songs.map(songObject => {
-    const { id, title, movie, length } = songObject
-    return <SongTile key={id} id={id} title={title} movie={movie} length={length} />
+  const songTiles = songs.map((songObject) => {
+    const { id, title } = songObject
+    return (
+      <SongTile
+        key={id}
+        id={id}
+        title={title}
+      />
+    )
   })
 
   return (
     <div className="callout">
       <h1>My Favorite Songs</h1>
-      {songTiles}
       <Link to="/songs/new">
         <h3>Add New Song</h3>
       </Link>
+      {songTiles}
     </div>
   )
 }

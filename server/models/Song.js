@@ -5,7 +5,7 @@ const pool = new pg.Pool({
 })
 
 class Song {
-  constructor({id, title, movie, length}) {
+  constructor({ id, title, movie, length }) {
     this.id = id
     this.title = title
     this.movie = movie
@@ -19,7 +19,7 @@ class Song {
 
     // turn those song rows from our database into Song objects
     const songData = rawData.rows
-    const songs = songData.map(song => {
+    const songs = songData.map((song) => {
       return new Song(song)
     })
 
@@ -31,11 +31,11 @@ class Song {
     // query the database for the song with that particular id
     const rawData = await pool.query(`SELECT * FROM songs WHERE id = ${id};`)
     
-    console.log(rawData.rows)
+    // console.log(rawData.rows)
     const songData = rawData.rows[0]
     
     // check if there is a song with that id
-    if(songData) {
+    if (songData) {
       // turn that single song into a Song object
       const song = new Song(songData)
       
@@ -45,10 +45,6 @@ class Song {
       return null
     }
   }
-
-  // singAVerse() {
-
-  // }
 }
 
 export default Song

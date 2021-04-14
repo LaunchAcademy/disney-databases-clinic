@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 
-const SongShow = props => {
+const SongShow = (props) => {
   const [song, setSong] = useState({})
 
   const getSong = async () => {
@@ -23,13 +24,14 @@ const SongShow = props => {
   useEffect(() => {
     getSong()
   }, [])
-  debugger
 
   return(
     <>
-      <h1>{song.title}</h1>
-      <h2>{song.movie}</h2>
-      <h3>{song.length}</h3>
+      <h4><Link to="/">Back to Home</Link></h4>
+
+      <h1>Title: {song.title}</h1>
+      <h2>Movie: {song.movie}</h2>
+      <h3>Length: {song.length}</h3>
     </>
   )
 }
