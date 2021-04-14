@@ -42,7 +42,9 @@ const SongsList = () => {
       <Link to="/songs/new">
         <h3>Add New Song</h3>
       </Link>
-      {songTiles}
+      <div className="callout primary">
+        {songTiles}
+      </div>
     </div>
   )
 }

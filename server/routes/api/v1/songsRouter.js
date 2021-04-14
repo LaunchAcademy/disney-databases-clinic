@@ -10,7 +10,8 @@ songsRouter.get("/", async (req, res) => {
     // (via the model!)
     // we need to await this so that `findAll` has time to query the database
     const songs = await Song.findAll()
-    // console.log(songs)
+    console.log("SONGS")
+    console.log(songs)
   
     // send that data as a JSON response
     res.status(200).json({ songs: songs })
@@ -18,6 +19,7 @@ songsRouter.get("/", async (req, res) => {
   } catch (err) {
     // if anything goes wrong,
     // catch it and console.log(errors), and respond with the error
+    console.error("ROUTER ERROR")
     console.error(err)
     res.status(500).json({ error: err })
   }
