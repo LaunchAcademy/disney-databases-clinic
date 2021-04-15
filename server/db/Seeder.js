@@ -3,15 +3,7 @@ const pool = new pg.Pool({connectionString:"postgres://postgres:password@localho
 
 class Seeder {
   static async seed() {
-    try {
-      const record = await pool.query("INSERT INTO concert_venues(name,location,capacity) VALUES('Palladium', 'Worcester MA', '2000');")
-      const result = await pool.query("SELECT * FROM concert_venues;")
-      console.log(result.rows)
-      pool.end()
-    } catch (error) {
-      console.log(`Error: ${error}`)
-      pool.end()
-    }
+    // your seed code here
   }
 }
 
