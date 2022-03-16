@@ -42,4 +42,20 @@ songsRouter.get("/:id", async (req, res) => {
   }
 })
 
+songsRouter.post("/", async (req, res) => {
+  try {
+    // take the user input and create a new instance of our model (Song)
+    const newSong = new Song(req.body)
+    // save a new Song record to the database
+    await newSong.save()
+    // if successful, send that record back to the frontend
+    res.status(201).json({ song: newSong })
+  } catch(err) {
+    // log error
+    console.error(err)
+    // respond with a 500 status
+    res.status(500).json({ errors: error })
+  }
+})
+
 export default songsRouter

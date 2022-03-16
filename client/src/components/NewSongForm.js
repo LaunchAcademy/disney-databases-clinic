@@ -6,7 +6,8 @@ const NewSongForm = props => {
   const [newSong, setNewSong] = useState({
     title: "",
     movie: "",
-    length: ""
+    length: "",
+    characterName: ""
   })
 
   const handleInputChange = event => {
@@ -68,6 +69,15 @@ const NewSongForm = props => {
             name="length"
             onChange={handleInputChange}
             value={newSong.length}
+          />
+        </label>
+        <label>
+          Character Name
+          <input
+            type="text"
+            name="characterName"
+            onChange={handleInputChange}
+            value={newSong.characterName}
           />
         </label>
         <input type="submit" className="button" />

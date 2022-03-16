@@ -26,8 +26,8 @@ const SongsList = () => {
   }, [])
 
   const songTiles = songs.map(songObject => {
-    const { id, title, movie, length } = songObject
-    return <SongTile key={id} id={id} title={title} movie={movie} length={length} />
+    const { id, title, movie, length, characterName } = songObject
+    return <SongTile key={id} id={id} title={title} movie={movie} length={length} characterName={characterName} />
   })
 
   return (

@@ -8,11 +8,12 @@ const pool = new pg.Pool({
 
 class Song {
   // Values in constructor should match the table columns in schema
-  constructor({ id, title, movie, length }) {
+  constructor({ id, title, movie, length, character_name, characterName }) {
     this.id = id
     this.title = title
     this.movie = movie
     this.length = length
+    this.characterName = character_name || characterName
   }
 
   // Async because we are accessing outside data that may take awhile
@@ -20,7 +21,6 @@ class Song {
     try {
       // Retrieve all records from the database table songs
       const result = await pool.query("SELECT * FROM songs;")
-
       // Map through result.rows to create an array of Song objects
       const songs = result.rows.map((song) => {
         return new Song(song)
@@ -55,6 +55,28 @@ class Song {
     } catch (error) {
       // Log error if something went wrong
       console.error(error)
+    }
+  }
+
+  async save() {
+    try {
+      // set up our query
+      const queryString = "INSERT INTO songs (title, movie, length, character_name) VALUES ($1, $2, $3, $4) RETURNING id;"
+      // this.title === "A song; DROP TABLE songs;"
+      // send it to the database with our user input
+      // pool.query wants two arguments: the query String, and the data it should insert into each column
+      const result = await pool.query(queryString, [this.title, this.movie, this.length, this.characterName])
+      
+      // take the id the database assigned to this record
+      const createdId = result.rows[0].id
+      // and save it in this instance of a Song
+      this.id = createdId
+      
+      // return true -- the record saved
+      return true
+    } catch(err) {
+      console.error(err)
+      throw(err)
     }
   }
 }
